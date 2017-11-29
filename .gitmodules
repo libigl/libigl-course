@@ -1,0 +1,6 @@
+[submodule "libigl"]
+	path = libigl
+	url = https://github.com/libigl/libigl
+[submodule "libigl-example-project"]
+	path = libigl-example-project
+	url = https://github.com/libigl/libigl-example-project
