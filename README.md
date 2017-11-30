@@ -1,5 +1,5 @@
 # libigl-course
-Material for the SIGGRAPH Asia 2017 short course on libigl. The course is composed of two parts. An overview of the coding style and purposed of the library (available in the pptx slides in this repo), plus a live tutorial session.
+Material for the SIGGRAPH Asia 2017 short course on libigl. The course is composed of two parts. An overview of the coding style and purposed of the library (available in the [pptx slides](https://github.com/libigl/libigl-course/raw/master/libigl-course-slides.pptx.zip) in this repo), plus a live tutorial session.
 
 ## Part 1: libigl overview
 
