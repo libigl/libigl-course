@@ -1,4 +1,4 @@
-// g++ -std=c++11 -I../libigl/include -I../libigl/external/nanogui/ext/eigen  main.cpp
+// g++ -std=c++11 -I../libigl/include -I../libigl/external/eigen  main_solution.cpp
 
 #include <igl/doublearea.h>
 #include <igl/readOBJ.h>

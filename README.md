@@ -22,19 +22,17 @@ Libigl can be used as a header-only library, you can find an example of a simple
 
 The recommended way to use libigl is by using the [libigl-example-project](https://github.com/libigl/libigl-example-project) repository. 
 
-The cmake contains many useful options, including *LIBIGL_WITH_NANOGUI*, which allows you to have access to a simple menu-based UI. The namespace of each functions explicitly shows the depedencies that needs to be enabled.
-
 ## Part 4: Advanced features
 
-* 4.1 [Serialization](http://libigl.github.io/libigl/tutorial/tutorial.html#stateserialization)
-* 4.2 [Booleans](http://libigl.github.io/libigl/tutorial/tutorial.html#booleanoperationsonmeshes)
+* 4.1 [Serialization](http://libigl.github.io/libigl/tutorial/#state-serialization)
+* 4.2 [Booleans](http://libigl.github.io/libigl/tutorial/#boolean-operations-on-meshes)
 * 4.3 [Python](https://github.com/libigl/libigl/tree/master/python)
 
 ## Part 5: Coding Tips
 
 This is a short list of coding tips that will greatly reduce your pain and suffering before (and after) the SIGGRAPH deadline.
 
-* [Coding Tips](http://libigl.github.io/libigl/coding-guidelines.html)
+* [Coding Tips](http://libigl.github.io/libigl/coding-guidelines/)
 
 
 Released under the MPL2 License,
