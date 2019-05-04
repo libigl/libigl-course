@@ -14,8 +14,7 @@ Eigen::MatrixXd vector_field
         const Eigen::MatrixXi& F,          // Faces
         const Eigen::MatrixXi& TT,         // Adjacency triangle-triangle
         const Eigen::VectorXi& soft_id,    // Soft constraints face ids
-        const Eigen::MatrixXd& soft_value, // Soft constraints 3d vectors
-        const int n                        // Degree of the n-rosy field
+        const Eigen::MatrixXd& soft_value  // Soft constraints 3d vectors
         );
 
 #endif

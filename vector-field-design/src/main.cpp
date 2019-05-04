@@ -1,4 +1,4 @@
-// Copyright (C) 2016 Daniele Panozzo <daniele.panozzo@gmail.com>
+// Copyright (C) 2019 Daniele Panozzo <daniele.panozzo@gmail.com>
 //
 // This Source Code Form is subject to the terms of the Mozilla Public License
 // v. 2.0. If a copy of the MPL was not distributed with this file, You can
@@ -31,74 +31,32 @@ Eigen::MatrixXd bc;
 // Currently selected face
 int selected;
 
-// Degree of the N-RoSy field
-int N;
-
-
 // Local basis
 Eigen::MatrixXd B1, B2, B3;
 
-// Converts a representative vector per face in the full set of vectors that describe
-// an N-RoSy field
-void representative_to_nrosy(
-  const Eigen::MatrixXd& V,
-  const Eigen::MatrixXi& F,
-  const Eigen::MatrixXd& R,
-  const int N,
-  Eigen::MatrixXd& Y)
-{
-  using namespace Eigen;
-  using namespace std;
-
-  Y.resize(F.rows()*N,3);
-  for (unsigned i=0;i<F.rows();++i)
-  {
-    double x = R.row(i) * B1.row(i).transpose();
-    double y = R.row(i) * B2.row(i).transpose();
-    double angle = atan2(y,x);
-
-    for (unsigned j=0; j<N;++j)
-    {
-      double anglej = angle + 2*M_PI*double(j)/double(N);
-      double xj = cos(anglej);
-      double yj = sin(anglej);
-      Y.row(i*N+j) = xj * B1.row(i) + yj * B2.row(i);
-      Y.row(i*N+j) = Y.row(i*N+j) * R.row(i).norm();
-    }
-
-  }
-}
-
-// Plots the mesh with an N-RoSy field
+// Plots the mesh with a vector field
 // The constrained faces (b) are colored in red.
-void plot_mesh_nrosy(
+void plot_vector_field(
   igl::opengl::glfw::Viewer& viewer,
   Eigen::MatrixXd& V,
   Eigen::MatrixXi& F,
-  int N,
-  Eigen::MatrixXd& PD1,
+  Eigen::MatrixXd& Y,
   Eigen::VectorXi& b)
 {
   using namespace Eigen;
   using namespace std;
+
   // Clear the mesh
   viewer.data().clear();
   viewer.data().set_mesh(V,F);
 
   // Expand the representative vectors in the full vector set and plot them as lines
   double avg = igl::avg_edge_length(V, F);
-  MatrixXd Y;
-  representative_to_nrosy(V, F, PD1, N, Y);
 
   MatrixXd B;
   igl::barycenter(V,F,B);
 
-  MatrixXd Be(B.rows()*N,3);
-  for(unsigned i=0; i<B.rows();++i)
-    for(unsigned j=0; j<N; ++j)
-      Be.row(i*N+j) = B.row(i);
-
-  viewer.data().add_edges(Be,Be+Y*(avg/2),RowVector3d(0,0,1));
+  viewer.data().add_edges(B,B+Y*(avg/2),RowVector3d(0,0,1));
 
   // Highlight in red the constrained faces
   MatrixXd C = MatrixXd::Constant(F.rows(),3,1);
@@ -113,11 +71,10 @@ bool key_down(igl::opengl::glfw::Viewer& viewer, unsigned char key, int modifier
   using namespace Eigen;
   using namespace std;
 
-  if (key >= '1' && key <= '9')
+  if (key >= '1')
   {
-    N = key - '0';
-    MatrixXd R = vector_field(V,F,TT,b,bc,N);
-    plot_mesh_nrosy(viewer,V,F,N,R,b);
+    MatrixXd R = vector_field(V,F,TT,b,bc);
+    plot_vector_field(viewer,V,F,R,b);
   }
 
   if (key == '[' || key == ']')
@@ -139,8 +96,8 @@ bool key_down(igl::opengl::glfw::Viewer& viewer, unsigned char key, int modifier
     double yj = sin(angle)*norm;
 
     bc.row(selected) = xj * B1.row(i) + yj * B2.row(i);
-    MatrixXd R = vector_field(V,F,TT,b,bc,N);
-    plot_mesh_nrosy(viewer,V,F,N,R,b);
+    MatrixXd R = vector_field(V,F,TT,b,bc);
+    plot_vector_field(viewer,V,F,R,b);
   }
 
   if (key == 'Q' || key == 'W')
@@ -150,8 +107,8 @@ bool key_down(igl::opengl::glfw::Viewer& viewer, unsigned char key, int modifier
 
     bc.row(selected) =  bc.row(selected) * (key == 'Q' ? 3./2. : 2./3.);
 
-    MatrixXd R = vector_field(V,F,TT,b,bc,N);
-    plot_mesh_nrosy(viewer,V,F,N,R,b);
+    MatrixXd R = vector_field(V,F,TT,b,bc);
+    plot_vector_field(viewer,V,F,R,b);
   }
 
   if (key == 'E')
@@ -163,8 +120,8 @@ bool key_down(igl::opengl::glfw::Viewer& viewer, unsigned char key, int modifier
     b.conservativeResize(b.size()-1);
     bc.row(selected) = bc.row(bc.rows()-1);
     bc.conservativeResize(b.size(),bc.cols());
-    MatrixXd R = vector_field(V,F,TT,b,bc,N);
-    plot_mesh_nrosy(viewer,V,F,N,R,b);
+    MatrixXd R = vector_field(V,F,TT,b,bc);
+    plot_vector_field(viewer,V,F,R,b);
   }
 
   return false;
@@ -198,8 +155,8 @@ bool mouse_down(igl::opengl::glfw::Viewer& viewer, int, int)
       bc.row(bc.rows()-1) << 1, 1, 1;
       selected = bc.rows()-1;
 
-      Eigen::MatrixXd R = vector_field(V,F,TT,b,bc,N);
-      plot_mesh_nrosy(viewer,V,F,N,R,b);
+      Eigen::MatrixXd R = vector_field(V,F,TT,b,bc);
+      plot_vector_field(viewer,V,F,R,b);
     }
 
     return true;

@@ -19,14 +19,10 @@ MatrixXd vector_field
         const MatrixXi& F,          // Faces
         const MatrixXi& TT,         // Adjacency triangle-triangle
         const VectorXi& soft_id,    // Soft constraints face ids
-        const MatrixXd& soft_value, // Soft constraints 3d vectors
-        const int n                 // Degree of the n-rosy field
+        const MatrixXd& soft_value  // Soft constraints 3d vectors
         )
 {
   assert(soft_id.size() > 0); // One constraint is necessary to make the solution unique
-
-  // This code works only for n==1, see tutorial_nrosy_complete for a generic implementation that works for n >= 1
-  assert(n==1);
 
   Matrix<double,Dynamic,3> T1(F.rows(),3), T2(F.rows(),3);
 
