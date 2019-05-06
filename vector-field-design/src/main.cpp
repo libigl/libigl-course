@@ -50,12 +50,14 @@ void plot_vector_field(
   viewer.data().clear();
   viewer.data().set_mesh(V,F);
 
-  // Expand the representative vectors in the full vector set and plot them as lines
+  // Compute average edge lengh for scaling
   double avg = igl::avg_edge_length(V, F);
 
+  // Compute face barycenters
   MatrixXd B;
   igl::barycenter(V,F,B);
 
+  // Show the vector field as lines
   viewer.data().add_edges(B,B+Y*(avg/2),RowVector3d(0,0,1));
 
   // Highlight in red the constrained faces
@@ -65,18 +67,19 @@ void plot_vector_field(
   viewer.data().set_colors(C);
 }
 
-// It allows to change the degree of the field when a number is pressed
 bool key_down(igl::opengl::glfw::Viewer& viewer, unsigned char key, int modifier)
 {
   using namespace Eigen;
   using namespace std;
 
+  // Plot the field
   if (key >= '1')
   {
     MatrixXd R = vector_field(V,F,TT,b,bc);
     plot_vector_field(viewer,V,F,R,b);
   }
 
+  // Rotate the field
   if (key == '[' || key == ']')
   {
     if (selected >= b.size() || selected < 0)
@@ -100,6 +103,7 @@ bool key_down(igl::opengl::glfw::Viewer& viewer, unsigned char key, int modifier
     plot_vector_field(viewer,V,F,R,b);
   }
 
+  // Scale the field
   if (key == 'Q' || key == 'W')
   {
     if (selected >= b.size() || selected < 0)
@@ -111,6 +115,7 @@ bool key_down(igl::opengl::glfw::Viewer& viewer, unsigned char key, int modifier
     plot_vector_field(viewer,V,F,R,b);
   }
 
+  // Erase the currently selected constraint
   if (key == 'E')
   {
     if (selected >= b.size() || selected < 0)
@@ -137,6 +142,7 @@ bool mouse_down(igl::opengl::glfw::Viewer& viewer, int, int)
   if(igl::unproject_onto_mesh(Eigen::Vector2f(x,y), viewer.core.view,
     viewer.core.proj, viewer.core.viewport, V, F, fid_ray, bary))
   {
+    // If it is a constraint, just make it current
     bool found = false;
     for (int i=0;i<b.size();++i)
     {
@@ -147,6 +153,7 @@ bool mouse_down(igl::opengl::glfw::Viewer& viewer, int, int)
       }
     }
 
+    // If it is not a constraint, make a constraint and highlight it in red
     if (!found)
     {
       b.conservativeResize(b.size()+1);
@@ -188,13 +195,11 @@ int main(int argc, char *argv[])
 
   selected = 0;
 
+  // Initialize the viewer
   igl::opengl::glfw::Viewer viewer;
 
   // Interpolate the field and plot
   key_down(viewer, '1', 0);
-
-  // Plot the mesh
-  viewer.data().set_mesh(V, F);
 
   // Register the callbacks
   viewer.callback_key_down = &key_down;
