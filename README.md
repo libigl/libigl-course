@@ -22,13 +22,17 @@ Libigl can be used as a header-only library, you can find an example of a simple
 
 The recommended way to use libigl is by using the [libigl-example-project](https://github.com/libigl/libigl-example-project) repository. 
 
-## Part 4: Advanced features
+## Part 4: Vector Field Design with libigl
+
+A complete example of how to code a simple field interpolation method using libigl. The source is available [here](https://github.com/libigl/libigl-course/tree/master/vector-field-design).
+
+## Part 5: Advanced features
 
 * 4.1 [Serialization](https://libigl.github.io/tutorial/#state-serialization)
 * 4.2 [Booleans](https://libigl.github.io/tutorial/#boolean-operations-on-meshes)
 * 4.3 [Python](https://libigl.github.io/python-bindings/)
 
-## Part 5: Coding Tips
+## Part 6: Coding Tips
 
 This is a short list of coding tips that will greatly reduce your pain and suffering before (and after) the SIGGRAPH deadline.
 
