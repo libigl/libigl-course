@@ -3,16 +3,16 @@ Material for the short course on libigl. The course is composed of two parts. An
 
 ## Part 1: libigl overview
 
-* 1.1 [How to clone the repository](http://libigl.github.io/libigl/tutorial/tutorial.html#chapter1:introductiontolibigl)
+* 1.1 [How to clone the repository](https://libigl.github.io/tutorial/#chapter-1)
 
 * 1.2 [Structure of libigl](https://github.com/libigl/libigl)
 
-* 1.3 [Tutorial Compilation](http://libigl.github.io/libigl/tutorial/tutorial.html#chapter1:introductiontolibigl)
+* 1.3 [Tutorial Compilation](https://libigl.github.io/tutorial/#chapter-1)
 
-* 1.4 [Structure of a simple libigl application (Tutorial 102)](http://libigl.github.io/libigl/tutorial/tutorial.html#visualizingsurfaces)
-* 1.5 [Overview of Discrete Geometric Quantities and Operators (202,203,204,205)](http://libigl.github.io/libigl/tutorial/tutorial.html#chapter2:discretegeometricquantitiesandoperators)
-* 1.6 [Overview of Shape Deformation (401,403,404,405)](http://libigl.github.io/libigl/tutorial/tutorial.html#chapter4:shapedeformation)
-* 1.7 [Overview of Mesh Parametrization (501,502,503,505,710)](http://libigl.github.io/libigl/tutorial/tutorial.html#chapter5:parametrization)
+* 1.4 [Structure of a simple libigl application (Tutorial 102)](https://libigl.github.io/tutorial/#visualizing-surfaces)
+* 1.5 [Overview of Discrete Geometric Quantities and Operators (202,203,204,205)](https://libigl.github.io/tutorial/#chapter-2-discrete-geometric-quantities-and-operators)
+* 1.6 [Overview of Shape Deformation (401,403,404,405)](https://libigl.github.io/tutorial/#chapter-4-shape-deformation)
+* 1.7 [Overview of Mesh Parametrization (501,502,503,505,710)](https://libigl.github.io/tutorial/#chapter-5-parametrization)
 
 ## Part 2: How to use libigl as a header-only library
 
@@ -24,15 +24,15 @@ The recommended way to use libigl is by using the [libigl-example-project](https
 
 ## Part 4: Advanced features
 
-* 4.1 [Serialization](http://libigl.github.io/libigl/tutorial/#state-serialization)
-* 4.2 [Booleans](http://libigl.github.io/libigl/tutorial/#boolean-operations-on-meshes)
-* 4.3 [Python](https://github.com/libigl/libigl/tree/master/python)
+* 4.1 [Serialization](https://libigl.github.io/tutorial/#state-serialization)
+* 4.2 [Booleans](https://libigl.github.io/tutorial/#boolean-operations-on-meshes)
+* 4.3 [Python](https://libigl.github.io/python-bindings/)
 
 ## Part 5: Coding Tips
 
 This is a short list of coding tips that will greatly reduce your pain and suffering before (and after) the SIGGRAPH deadline.
 
-* [Coding Tips](http://libigl.github.io/libigl/coding-guidelines/)
+* [Coding Tips](https://libigl.github.io/coding-guidelines/)
 
 
 Released under the MPL2 License,
