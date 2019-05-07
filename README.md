@@ -1,5 +1,5 @@
 # libigl-course
-Material for the short course on libigl. The course is composed of two parts. An overview of the coding style and purposed of the library (available in the [pptx slides](https://github.com/libigl/libigl-course/raw/master/libigl-course-slides.pptx.zip) in this repo), plus a live tutorial session.
+Material for the short course on libigl. The course is composed of two parts. An overview of the coding style and purposed of the library (available in the [pptx slides](https://github.com/libigl/libigl-course/raw/master/libigl-course-slides.pptx.zip) in this repo), plus a live tutorial session. A longer version of the tutorial, which also contains an example of a vector field interpolation algorithm implemented in libigl is available in the [keynote slides](https://cs.nyu.edu/~panozzo/libigl/libigl-course-slides.key.zip).
 
 ## Part 1: libigl overview
 
